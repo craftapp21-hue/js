@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>تدرب على حل المسائل الرياضيه</h1>
+    <div class="container">
+        <input id="input" type="text" placeholder="ادخل اجابتك">
+        <button id="checkBtn">تأكيد</button>
+        <a href="index.html">
+            <button id="backBtn">Back</button>
+        </a>
+    </div>
+    
+    <script>
+        const input = document.getElementById('input');
+        const checkBtn = document.getElementById('checkBtn');
+
+        // توليد الرقم الأول عشوائياً بين 1 و 10 وتخزينه في المتغير num1
+        let num1 = Math.floor(Math.random() * 10) + 1;
+
+        // توليد الرقم الثاني عشوائياً بين 1 و 10 وتخزينه في المتغير num2
+        let num2 = Math.floor(Math.random() * 10) + 1;
+
+        // جمع الرقمين العشوائيين معاً وتخزين الناتج الصحيح في المتغير correctAnswer
+        let correctAnswer = num1 + num2;
+
+        // جلب عنصر العنوان h1 وتغيير النص بداخله ليعرض المسألة الحالية للمستخدم
+        document.querySelector('h1').innerText = `كم ناتج: ${num1} + ${num2} ؟`;
+
+        checkBtn.addEventListener('click', function () {
+            if (input.value == '') {
+                alert('برجاء ان تكتب شئ')
+                return;
+        }
+        // التحقق مما إذا كان مربع الإدخال يحتوي على نص أو قيمة مكتوبة بالفعل
+        if (input.value != '') {
+            // تحويل النص المكتوب داخل مربع الإدخال إلى رقم وتخزينه في userAnswer
+            let userAnswer = Number(input.value);
+
+            // مقارنة إجابة المستخدم بالناتج الصحيح المحسوب مسبقاً
+            if (userAnswer === correctAnswer) {
+            // إظهار رسالة تهنئة بالفوز إذا كانت الإجابة مطابقة تماماً
+            alert('😎 🏆 إجابة صحيحة ممتاز 🏆 😎');
+            // إعادة تنشيط وتحديث الصفحة تلقائياً لتوليد مسألة عشوائية جديدة
+            location.reload(); 
+        // في حال كانت إجابة المستخدم غير مطابقة للناتج الصحيح
+        } else {
+            // إظهار رسالة تنبيه تفيد بأن الإجابة المكتوبة خاطئة
+            alert('❌ إجابة خاطئة، حاول مرة أخرى ❌');
+        }
+    }
+});
+
+    </script>
+</body>
+</html>
